@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  Container,
+  Select,
+  MenuItem,
+  Typography,
+  Box,
+  FormControl
+} from "@mui/material";
 
 const CSCRender = () => {
   const [countries, setCountries] = useState([]);
@@ -55,55 +63,73 @@ const CSCRender = () => {
   }, [selectedState]);
 
   return (
-    <div>
-      <h1>Location Selector</h1>
-      <div style={{display:"flex", justifyContent:"space-around", m:5}}>
-        <select
-          id="country"
-          value={selectedCountry}
-          onChange={(e) => setSelectedCountry(e.target.value)}
-        >
-          <option value="">Select Country</option>
-          {countries.map((country) => (
-            <option key={country} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
-        <select
-          value={selectedState}
-          onChange={(e) => setSelectedState(e.target.value)}
-          disabled={!selectedCountry}
-        >
-          <option value="">Select State</option>
-          {states.map((state) => (
-            <option key={state} value={state}>
-              {state}
-            </option>
-          ))}
-        </select>
-        <select
-          value={selectedCity}
-          onChange={(e) => setSelectedCity(e.target.value)}
-          disabled={!selectedState}
-        >
-          <option value="">Select City</option>
-          {cities.map((city) => (
-            <option key={city} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-      </div>
+    <Container>
+      <Typography variant="h4" sx={{ mt:5,fontStyle: 'italic', fontWeight: 'bold', textDecoration: 'underline' }}>
+        Select Location 
+      </Typography>
+
+      <Box sx={{ display: "flex", justifyContent: "space-between", m: 3 }}>
+        <FormControl sx={{ minWidth: 200, width:'50%' }}>
+          <Select
+            value={selectedCountry}
+            displayEmpty
+            onChange={(e) => setSelectedCountry(e.target.value)}
+          >
+            <MenuItem value="">
+              <em>Select Country</em>
+            </MenuItem>
+            {countries.map((country) => (
+              <MenuItem key={country} value={country}>
+                {country}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ minWidth: 200, width:'30%' }} disabled={!selectedCountry}>
+          <Select
+            value={selectedState}
+            displayEmpty
+            onChange={(e) => setSelectedState(e.target.value)}
+          >
+            <MenuItem value="">
+              <em>Select State</em>
+            </MenuItem>
+            {states.map((state) => (
+              <MenuItem key={state} value={state}>
+                {state}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ minWidth: 200 }} disabled={!selectedState}>
+          <Select
+            value={selectedCity}
+            displayEmpty
+            onChange={(e) => setSelectedCity(e.target.value)}
+          >
+            <MenuItem value="">
+              <em>Select City</em>
+            </MenuItem>
+            {cities.map((city) => (
+              <MenuItem key={city} value={city}>
+                {city}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
 
       {selectedCity && selectedState && selectedCountry && (
-        <div>
-          <h2>
-            You Selected: {selectedCity}, {selectedState}, {selectedCountry}
-          </h2>
-        </div>
+        <Typography variant="h6" gutterBottom>
+          You Selected:  
+          <span style={{ fontWeight: 'bold', fontSize: '1.5em' }}> {selectedCity}, </span>
+          <span style={{ color: 'gray', fontSize: '1.2em' }}> {selectedState}, </span>
+          <span style={{ color: 'lightgray', fontSize: '1em' }}> {selectedCountry} </span>
+        </Typography>
       )}
-    </div>
+    </Container>
   );
 };
 
