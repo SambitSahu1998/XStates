@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Container,
-  Select,
-  MenuItem,
-  Typography,
-  Box,
-  FormControl
-} from "@mui/material";
 
 const CSCRender = () => {
   const [countries, setCountries] = useState([]);
@@ -63,74 +55,124 @@ const CSCRender = () => {
   }, [selectedState]);
 
   return (
-    <Container>
-      <Typography variant="h4" sx={{ mt:5,fontStyle: 'italic', fontWeight: 'bold', textDecoration: 'underline' }}>
-        Select Location 
-      </Typography>
+    <div style={styles.container}>
+      <h1 style={styles.header}>Select Location</h1>
 
-      <Box sx={{ display: "flex", justifyContent: "space-between", m: 3 }}>
-        <FormControl sx={{ minWidth: 200, width:'50%' }}>
-          <Select
+      <div style={styles.selectContainer}>
+        <div style={styles.selectWrapper}>
+          <label htmlFor="country" style={styles.label}>Country</label>
+          <select
+            id="country"
             value={selectedCountry}
-            displayEmpty
             onChange={(e) => setSelectedCountry(e.target.value)}
+            style={styles.select}
           >
-            <MenuItem value="">
-              <em>Select Country</em>
-            </MenuItem>
+            <option value="">Select Country</option>
             {countries.map((country) => (
-              <MenuItem key={country} value={country}>
+              <option key={country} value={country}>
                 {country}
-              </MenuItem>
+              </option>
             ))}
-          </Select>
-        </FormControl>
+          </select>
+        </div>
 
-        <FormControl sx={{ minWidth: 200, width:'30%' }} disabled={!selectedCountry}>
-          <Select
+        <div style={styles.selectWrapper}>
+          <label htmlFor="state" style={styles.label}>State</label>
+          <select
+            id="state"
             value={selectedState}
-            displayEmpty
             onChange={(e) => setSelectedState(e.target.value)}
+            style={styles.select}
+            disabled={!selectedCountry}
           >
-            <MenuItem value="">
-              <em>Select State</em>
-            </MenuItem>
+            <option value="">Select State</option>
             {states.map((state) => (
-              <MenuItem key={state} value={state}>
+              <option key={state} value={state}>
                 {state}
-              </MenuItem>
+              </option>
             ))}
-          </Select>
-        </FormControl>
+          </select>
+        </div>
 
-        <FormControl sx={{ minWidth: 200 }} disabled={!selectedState}>
-          <Select
+        <div style={styles.selectWrapper}>
+          <label htmlFor="city" style={styles.label}>City</label>
+          <select
+            id="city"
             value={selectedCity}
-            displayEmpty
             onChange={(e) => setSelectedCity(e.target.value)}
+            style={styles.select}
+            disabled={!selectedState}
           >
-            <MenuItem value="">
-              <em>Select City</em>
-            </MenuItem>
+            <option value="">Select City</option>
             {cities.map((city) => (
-              <MenuItem key={city} value={city}>
+              <option key={city} value={city}>
                 {city}
-              </MenuItem>
+              </option>
             ))}
-          </Select>
-        </FormControl>
-      </Box>
+          </select>
+        </div>
+      </div>
 
       {selectedCity && selectedState && selectedCountry && (
-        <Typography variant="h6" gutterBottom>
-          You Selected:  
-          <span style={{ fontWeight: 'bold', fontSize: '1.5em' }}> {selectedCity}, </span>
-          <span style={{ color: 'gray', fontSize: '1.2em' }}> {selectedState}, </span>
-          <span style={{ color: 'lightgray', fontSize: '1em' }}> {selectedCountry} </span>
-        </Typography>
+        <p style={styles.selectedText}>
+          You Selected:
+          <span style={styles.city}> {selectedCity}, </span>
+          <span style={styles.state}> {selectedState}, </span>
+          <span style={styles.country}> {selectedCountry} </span>
+        </p>
       )}
-    </Container>
+    </div>
   );
+};
+
+const styles = {
+  container: {
+    maxWidth: '700px',
+    margin: '0 auto',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    textAlign: 'center',
+  },
+  header: {
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    textDecoration: 'underline',
+  },
+  selectContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '20px 0',
+  },
+  selectWrapper: {
+    flex: '1',
+    margin: '0 10px',
+  },
+  label: {
+    display: 'block',
+    marginBottom: '8px',
+  },
+  select: {
+    width: '100%',
+    padding: '10px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+  },
+  selectedText: {
+    fontSize: '1.2em',
+  },
+  city: {
+    fontWeight: 'bold',
+    fontSize: '1.5em',
+  },
+  state: {
+    color: 'gray',
+    fontSize: '1.2em',
+  },
+  country: {
+    color: 'lightgray',
+    fontSize: '1em',
+  },
 };
 
 export default CSCRender;
