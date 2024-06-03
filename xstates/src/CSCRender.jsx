@@ -60,7 +60,9 @@ const CSCRender = () => {
 
       <div style={styles.selectContainer}>
         <div style={styles.selectWrapper}>
-          <label htmlFor="country" style={styles.label}>Country</label>
+          <label htmlFor="country" style={styles.label}>
+            Country
+          </label>
           <select
             id="country"
             value={selectedCountry}
@@ -77,7 +79,9 @@ const CSCRender = () => {
         </div>
 
         <div style={styles.selectWrapper}>
-          <label htmlFor="state" style={styles.label}>State</label>
+          <label htmlFor="state" style={styles.label}>
+            State
+          </label>
           <select
             id="state"
             value={selectedState}
@@ -95,7 +99,9 @@ const CSCRender = () => {
         </div>
 
         <div style={styles.selectWrapper}>
-          <label htmlFor="city" style={styles.label}>City</label>
+          <label htmlFor="city" style={styles.label}>
+            City
+          </label>
           <select
             id="city"
             value={selectedCity}
@@ -112,66 +118,67 @@ const CSCRender = () => {
           </select>
         </div>
       </div>
-
-      {selectedCity && selectedState && selectedCountry && (
-        <p style={styles.selectedText}>
-          You Selected:
-          <span style={styles.city}> {selectedCity}, </span>
-          <span style={styles.state}> {selectedState}, </span>
-          <span style={styles.country}> {selectedCountry} </span>
-        </p>
-      )}
+      <div>
+        {selectedCity && selectedState && selectedCountry && (
+          <p style={styles.selectedText}>
+            You Selected 
+            <span style={styles.city}> {selectedCity}, </span>
+            <span style={styles.state}> {selectedState}, </span>
+            <span style={styles.country}> {selectedCountry} </span>
+          </p>
+        )}
+      </div>
     </div>
   );
 };
 
 const styles = {
   container: {
-    maxWidth: '700px',
-    margin: '0 auto',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    textAlign: 'center',
+    maxWidth: "700px",
+    margin: "0 auto",
+    padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+    textAlign: "center",
   },
   header: {
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    textDecoration: 'underline',
+    fontStyle: "italic",
+    fontWeight: "bold",
+    textDecoration: "underline",
   },
   selectContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '20px 0',
+    display: "flex",
+    justifyContent: "space-between",
+    margin: "20px 0",
   },
   selectWrapper: {
-    flex: '1',
-    margin: '0 10px',
+    flex: "1",
+    margin: "0 10px",
   },
   label: {
-    display: 'block',
-    marginBottom: '8px',
+    display: "block",
+    marginBottom: "8px",
   },
   select: {
-    width: '100%',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
+    width: "100%",
+    padding: "10px",
+    borderRadius: "4px",
+    border: "1px solid #ccc",
   },
   selectedText: {
-    fontSize: '1.2em',
+    fontSize: "1.2em",
   },
   city: {
-    fontWeight: 'bold',
-    fontSize: '1.5em',
+    fontWeight: "bold",
+    fontSize: "1.5em",
   },
   state: {
-    color: 'gray',
-    fontSize: '1.2em',
+    color: "gray",
+    fontSize: "1.2em",
   },
   country: {
-    color: 'lightgray',
-    fontSize: '1em',
+    color: "lightgray",
+    fontSize: "1em",
   },
 };
 
