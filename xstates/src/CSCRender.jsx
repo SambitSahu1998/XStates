@@ -121,7 +121,7 @@ const CSCRender = () => {
       <div>
         {selectedCity && selectedState && selectedCountry && (
           <p style={styles.selectedText}>
-            You Selected 
+            You selected
             <span style={styles.city}> {selectedCity}, </span>
             <span style={styles.state}> {selectedState}, </span>
             <span style={styles.country}> {selectedCountry} </span>
